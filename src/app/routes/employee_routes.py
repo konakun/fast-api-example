@@ -60,4 +60,10 @@ async def update_employee(employee: dict, pk_employee: int = Path(..., gt=0),
 
 @employee_router.delete('/{pk_employee}', status_code=status.HTTP_202_ACCEPTED)
 async def delete_employee(pk_employee: int = Path(..., gt=0), db: Session = Depends(get_db)):
-    return employee_service.delete(db, pk_employee)
+    data = employee_service.delete(db, pk_employee)
+    if not data:
+        raise HTTPException(
+            status.HTTP_400_BAD_REQUEST,
+            detail="No se pudo eliminar al empleado."
+        )
+    return {'message': 'Se elimino correctamente al empleado.'}

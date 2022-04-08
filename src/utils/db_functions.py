@@ -27,6 +27,10 @@ class DBModel(SQLModel):
             return False
 
     def delete(self, db):
-        db.delete(self)
-        return db.commit()
-
+        try:
+            db.delete(self)
+            db.commit()
+            return True
+        except:
+            db.rollback()
+            return False
