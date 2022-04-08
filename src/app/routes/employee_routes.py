@@ -16,7 +16,7 @@ employee_router = APIRouter(
     dependencies=[]
     )
 
-@employee_router.get('', response_model=list[Employee])
+@employee_router.get('',status_code=status.HTTP_200_OK, response_model=list[Employee])
 async def get_employees(db: Session = Depends(get_db)):
     data = employee_service.fetch(db)
     if not data:
@@ -27,7 +27,7 @@ async def get_employees(db: Session = Depends(get_db)):
     return data
 
 
-@employee_router.get('/{pk_employee}')
+@employee_router.get('/{pk_employee}', status_code=status.HTTP_200_OK, response_model=Employee)
 async def get_employee(pk_employee: int = Path(..., gt=0), db: Session = Depends(get_db)):
     data = employee_service.retrieve(db, pk_employee)
     if not data:

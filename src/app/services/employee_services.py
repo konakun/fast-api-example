@@ -27,6 +27,8 @@ class EmployeeService:
     
     def delete(self, db, pk_employee):
         employee_to_delete = self.retrieve(db, pk_employee)
+        if not employee_to_delete:
+            return False
         return employee_to_delete.delete(db)
 
 employee_service = EmployeeService()
