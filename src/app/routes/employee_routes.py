@@ -2,11 +2,9 @@ from fastapi import APIRouter, Depends, Path, status, HTTPException
 from sqlmodel import Session
 
 from src.app.models.employee_models import Employee
-
 from src.app.services.employee_services import (
     employee_service
 )
-
 from src.config.database import get_db
 
 

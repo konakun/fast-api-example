@@ -3,6 +3,7 @@ from uvicorn import run
 
 from src.app.routes.employee_routes import employee_router
 
+
 app = FastAPI()
 
 app.include_router(employee_router)
