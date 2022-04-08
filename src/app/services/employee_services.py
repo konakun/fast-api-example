@@ -1,11 +1,6 @@
-from fastapi import status, HTTPException
-from fastapi.responses import JSONResponse
-from fastapi.encoders import jsonable_encoder
 from src.app.models.employee_models import Employee
 
-
 from src.utils.singleton import singleton
-from src.utils.fake_db import EMPLOYEES
 
 
 @singleton
