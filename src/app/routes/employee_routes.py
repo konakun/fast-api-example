@@ -26,7 +26,6 @@ async def get_employees(db: Session = Depends(get_db)):
         )
     return data
 
-
 @employee_router.get('/{pk_employee}', status_code=status.HTTP_200_OK, response_model=Employee)
 async def get_employee(pk_employee: int = Path(..., gt=0), db: Session = Depends(get_db)):
     data = employee_service.retrieve(db, pk_employee)

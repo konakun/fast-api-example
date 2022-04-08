@@ -3,6 +3,7 @@ from sqlmodel import Field
 
 from src.utils.db_functions import DBModel
 
+
 class Employee(DBModel, table=True):
     __tablename__: str = "employees"
     
