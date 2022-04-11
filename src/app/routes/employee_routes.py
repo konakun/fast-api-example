@@ -2,11 +2,9 @@ from fastapi import APIRouter, Depends, Path, status, HTTPException
 from sqlmodel import Session
 
 from src.app.models.employee_models import Employee
-
 from src.app.services.employee_services import (
     employee_service
 )
-
 from src.config.database import get_db
 
 
@@ -25,7 +23,6 @@ async def get_employees(db: Session = Depends(get_db)):
             detail='No se encontraron empleados.'
         )
     return data
-
 
 @employee_router.get('/{pk_employee}', status_code=status.HTTP_200_OK, response_model=Employee)
 async def get_employee(pk_employee: int = Path(..., gt=0), db: Session = Depends(get_db)):
