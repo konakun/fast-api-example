@@ -2,11 +2,14 @@ import pymysql
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from sqlmodel import SQLModel
+
+from src.config.config import DB_CONNECTION
 
 
-SQLALCHEMY_DATABASE_URL = 'mysql+pymysql://root@localhost/test_api_db'
+engine = create_engine(DB_CONNECTION)
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
+SQLModel.metadata.create_all(engine)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
